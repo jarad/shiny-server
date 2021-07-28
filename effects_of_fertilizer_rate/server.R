@@ -1,6 +1,4 @@
 # Load packages
-library(shiny)
-library(shinythemes)
 library(tidyverse)
 library(gridExtra)
 
@@ -35,27 +33,6 @@ g_yield<-ggplot(ymPlotDF) + # Omits 95 pixels without information
     panel.background = element_rect(fill = "gray80")
   )
 
-
-ui <- fluidPage(theme = shinytheme("lumen"),
-                titlePanel("N2O Emissions"),
-                sidebarLayout(
-                  sidebarPanel(
-                  mainPanel(
-                   
-                                     sliderInput(inputId = "x", label = "Nitrogen Fertilizer (kg ha^-1)",
-                                                 min = 0, max = 350, value = 0, step = 1,
-                                                 animate = animationOptions(interval = 100)),
-                                     HTML("Select Nitrogen Fertilizer rate")
-                    )
-                  ),
-                  
-                  # Output: Description, lineplot, and reference
-                  mainPanel(
-                    plotOutput(outputId = "lineplot", height = "300px"), 
-                    textOutput(outputId = "desc")
-                  )
-                )
-)
 
 
 
@@ -104,12 +81,5 @@ server <- function(input, output) {
   })
   
 }
-
- 
-
-# Create Shiny object
-shinyApp(ui = ui, server = server)
-
-
 
 
